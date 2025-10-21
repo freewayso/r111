@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/sol2_demo.dir/link.d CMakeFiles/sol2_demo.dir/src/main.cpp.o CMakeFiles/sol2_demo.dir/src/game_engine.cpp.o -o sol2_demo  /usr/lib/x86_64-linux-gnu/liblua5.3.a

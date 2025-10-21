@@ -1,0 +1,55 @@
+# Build directories
+build/
+build_vs2022/
+cmake-build-*/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.obj
+*.o
+*.pdb
+
+# Protobuf generated
+*.pb.h
+*.pb.cc
+
+# Save data
+saves/
+
+# Temporary files
+temp_*/
+*.tmp
+*.log
+
+# CMake cache
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# vcpkg
+vcpkg_installed/
+
+# Lua compiled
+*.luac
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Large libraries (should use package manager instead)
+# Uncomment if needed:
+# lua/lib/*.dll
+# lua/lib/*.lib
+
