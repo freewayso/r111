@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package game;
+
+// Player data structure
+message PlayerData {
+    int32 id = 1;
+    string name = 2;
+    int32 level = 3;
+    int32 health = 4;
+    int32 max_health = 5;
+    int32 mana = 6;
+    int32 max_mana = 7;
+    int32 experience = 8;
+    int32 gold = 9;
+    
+    // Position
+    message Position {
+        float x = 1;
+        float y = 2;
+        float z = 3;
+    }
+    Position position = 10;
+    
+    // Inventory items (item template names)
+    repeated string inventory = 11;
+    
+    // Equipment
+    message Equipment {
+        string weapon = 1;
+        string armor = 2;
+        string accessory = 3;
+    }
+    Equipment equipment = 12;
+    
+    // Save timestamp
+    int64 save_time = 13;
+}
+
+// Mail data structure
+message MailData {
+    int32 id = 1;
+    string sender = 2;
+    string title = 3;
+    string content = 4;
+    
+    // Rewards
+    message Rewards {
+        int32 gold = 1;
+        int32 exp = 2;
+        repeated string items = 3;
+    }
+    Rewards rewards = 5;
+    
+    bool is_read = 6;
+    bool is_claimed = 7;
+    int64 timestamp = 8;
+    int64 expire_time = 9;
+}
+
+// Mailbox (collection of mails for a player)
+message MailBox {
+    int32 player_id = 1;
+    repeated MailData mails = 2;
+}
+
+// Enemy data
+message EnemyData {
+    int32 id = 1;
+    string name = 2;
+    int32 health = 3;
+    int32 max_health = 4;
+    int32 damage = 5;
+    int32 exp_reward = 6;
+    string template_name = 7;
+    bool is_alive = 8;
+}
+
+// Game state snapshot
+message GameState {
+    int32 version = 1;
+    int64 timestamp = 2;
+    int32 frame_count = 3;
+    float game_time = 4;
+    
+    repeated PlayerData players = 5;
+    repeated EnemyData enemies = 6;
+}
+
+// Network messages
+message NetworkMessage {
+    enum MessageType {
+        UNKNOWN = 0;
+        PLAYER_LOGIN = 1;
+        PLAYER_LOGOUT = 2;
+        PLAYER_MOVE = 3;
+        PLAYER_ATTACK = 4;
+        CHAT_MESSAGE = 5;
+        SYSTEM_ANNOUNCEMENT = 6;
+        MAIL_NOTIFICATION = 7;
+        LEVEL_UP = 8;
+    }
+    
+    MessageType type = 1;
+    int32 sender_id = 2;
+    int32 target_id = 3;
+    string content = 4;
+    int64 timestamp = 5;
+}
+
